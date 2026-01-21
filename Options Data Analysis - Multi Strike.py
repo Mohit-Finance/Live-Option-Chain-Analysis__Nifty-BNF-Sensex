@@ -380,7 +380,7 @@ def valid_strikes(synth_atm):
     sensex_upper_strikes = []
     sensex_lower_strikes = []
 
-    total_strikes = 15
+    total_strikes = 25
 
     for i in range (1, total_strikes+1):
         nifty_upper_strikes.append(synth_atm['nifty'] + (i)*50)
@@ -524,7 +524,7 @@ def data_prep(df_option, index):
                 strikes_df_dict[f'{index}'] = json.load(fileread)
         except:
             mid = len(df) // 2
-            strikes_df_dict[f'{index}'] = df['strike'].iloc[mid-7 : mid+8].tolist()
+            strikes_df_dict[f'{index}'] = df['strike'].iloc[mid-12 : mid+13].tolist()
             # strikes_df_dict[f'{index}'] = df['strike'].iloc[3:18].tolist()
             with open(f'Credentials/Data/{tdate}/strikes_df_list_{index}_{tdate}.json', 'w') as filewrite:
                 json.dump(strikes_df_dict[f'{index}'], filewrite)
