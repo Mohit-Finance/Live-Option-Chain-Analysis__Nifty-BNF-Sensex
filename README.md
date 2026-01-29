@@ -10,6 +10,26 @@ The system is organized into **three dedicated visualization windows**, each ser
 *(All plots update tick-by-tick in real time)*
 
 ---
+## 🎥 Live Market Video Demonstration
+
+The following videos all demonstrate the **same system and visualization layout**, recorded on **three different trading days** to show **consistency, stability, and behavior across varying market conditions**.
+
+Each video captures **live market data**, with all plots and metrics updating **tick-by-tick in real time**.
+
+### 🔹 Live Demo – Day 1
+▶️ https://youtu.be/y8SDAUpvwZQ
+
+### 🔹 Live Demo – Day 2
+▶️ https://youtu.be/L6ZcbSEAVS8
+
+### 🔹 Live Demo – Day 3
+▶️ https://youtu.be/iIWiUO42KoM
+
+### 📌 Note
+- All recordings are from **live market hours**
+- No replayed or simulated data
+- Same codebase, same logic, different market days
+
 
 ## 🪟 Window 1 – Multi-Index Sentiment Dashboard (Macro View)
 
