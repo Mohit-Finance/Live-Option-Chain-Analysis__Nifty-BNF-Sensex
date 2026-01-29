@@ -58,8 +58,9 @@ Controls whether the **option chain itself** should be updated.
 - Tick-by-tick **pyqtgraph windows continue updating**
 - Useful when:
   - Focusing purely on sentiment / price behavior
-  - Reducing API load
+  - Reducing System load (Program load)
   - Debugging or performance analysis
+  - Increase the Execution speed as the task of updating the Option chain into each excel tab gets reduced.
 
 ---
 
