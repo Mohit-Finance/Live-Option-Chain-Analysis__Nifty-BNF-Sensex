@@ -2,6 +2,13 @@
 
 The system is organized into **three dedicated visualization windows**, each serving a distinct analytical purpose — from macro sentiment to microstructure pressure and cross-index comparison.
 
+## 🖼 Sample Output
+
+### Live Tick-by-Tick Sentiment Visualization
+![Live Option Chain Sentiment](./Images/all_screens.png)
+
+*(All plots update tick-by-tick in real time)*
+
 ---
 
 ## 🪟 Window 1 – Multi-Index Sentiment Dashboard (Macro View)
@@ -191,9 +198,3 @@ Across **all three indices simultaneously**.
 
 ---
 
-## 🖼 Sample Output
-
-### Live Tick-by-Tick Sentiment Visualization
-![Live Option Chain Sentiment](./Images/all_screens.png)
-
-*(All plots update tick-by-tick in real time)*
