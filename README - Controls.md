@@ -8,7 +8,7 @@ This design enables long-running, tick-by-tick analysis while maintaining respon
 ---
 ## 🖼 Control Panel Preview
 
-[Open Summary Control Panel Image](./Images/summary.png)
+![Open Summary Control Panel Image](./Images/summary.png)
 
 ## 🟨 Data Visibility & Performance Controls
 
