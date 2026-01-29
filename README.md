@@ -106,22 +106,12 @@ This subplot helps identify:
 
 ---
 
-### 📌 Metrics Visualized
-- Live ATM Straddle Price
-- Straddle VWAP
-- CE OBV (ATM)
-- PE OBV (ATM)
-
----
-
 ### 🧾 Textual Data Displayed
 - Straddle price at market open (09:15)
 - Current straddle price
 - Net straddle decay / expansion
-- Current ATM CE LTP
-- Current ATM PE LTP
-- CE OBV (ATM)
-- PE OBV (ATM)
+- Current ATM CE OBV
+- Current ATM PE OBV
 - Synthetic ATM strike
 
 ---
@@ -131,20 +121,7 @@ This subplot helps identify:
 ### 🎯 What It Analyzes
 - Average **OTM IV behavior**
 - **Delta changes** (CE & PE)
-- **Buying pressure** derived from:
-  - Bid vs Ask quantity imbalance
-
-This layer captures **volatility sentiment and order-flow bias**.
-
----
-
-### 📌 Metrics Visualized
-- CE Average OTM IV
-- PE Average OTM IV
-- CE Delta Change
-- PE Delta Change
-- CE Buying Pressure
-- PE Buying Pressure
+- **Buying pressure** derived from bid–ask quantity imbalance
 
 ---
 
@@ -153,8 +130,74 @@ This layer captures **volatility sentiment and order-flow bias**.
 - Synthetic ATM
 - CE Avg OTM IV
 - PE Avg OTM IV
-- CE Buying Pressure (Ask–Bid based)
-- PE Buying Pressure (Ask–Bid based)
+- CE Buying Pressure
+- PE Buying Pressure
+
+---
+
+## 🪟 Window 2 – Tick-by-Tick Strike-Level Pressure Dashboard
+
+This window provides a **high-resolution, strike-specific view** of **immediate price and pressure behavior** using **LTP vs VWAP** comparisons.
+
+- Layout: **3 × 3 grid**
+- Index selection:
+  - NIFTY
+  - BANKNIFTY
+  - SENSEX
+- When an index is selected (e.g., NIFTY), **the entire window focuses on that index only**
+
+---
+
+### 🎯 Central Focus: ATM Straddle (2 × 2 Block)
+
+- The **center 2 × 2 area** plots:
+  - **ATM Straddle LTP vs VWAP**
+- Represents the **core volatility and sentiment zone**
+- ATM strike can be:
+  - Selected **automatically** (current ATM)
+  - Selected **manually** (user-defined strike)
+
+---
+
+### 📉 Left Side: ATM Put & OTM Put Analysis
+
+- Immediate **left of the 2 × 2 center**:
+  - ATM **PE LTP vs VWAP**
+- **Top row** plots:
+  - **OTM PE strikes above ATM**
+  - PE LTP vs VWAP
+- Total coverage:
+  - **ATM PE**
+  - **Up to 4 OTM PE strikes**
+
+This reveals **downside pressure buildup** and defensive positioning.
+
+---
+
+### 📈 Right & Bottom Side: ATM Call & OTM Call Analysis
+
+- Immediate **right of the 2 × 2 center**:
+  - ATM **CE LTP vs VWAP**
+- **Bottom row** plots:
+  - **OTM CE strikes above ATM**
+  - CE LTP vs VWAP
+- Total coverage:
+  - **ATM CE**
+  - **Up to 4 OTM CE strikes**
+
+This highlights **upside aggression and call-side dominance**.
+
+---
+
+### 🧠 What Window 2 Reveals
+
+- Instant **price vs VWAP divergence**
+- Tick-level **pressure buildup**
+- Early **sentiment shifts**
+- Real-time **volatility expansion or contraction**
+- CE vs PE dominance at and around ATM
+
+This window acts as a **microscope**, while Window 1 acts as a **macro sentiment scanner**.
 
 ---
 
@@ -173,10 +216,10 @@ This layer captures **volatility sentiment and order-flow bias**.
 - Dynamic ATM & OTM selection
 - Synthetic ATM calculation
 - OI build-up vs unwinding logic
-- Straddle VWAP analysis
-- OBV-based option flow analysis
-- Bid–Ask imbalance for pressure detection
-- Multi-timeframe IV percentile context
+- Straddle VWAP behavior
+- OBV-based option flow
+- Bid–ask imbalance analysis
+- Strike-level VWAP interaction
 
 ---
 
@@ -187,8 +230,8 @@ This layer captures **volatility sentiment and order-flow bias**.
 | Language | Python 3.10+ |
 | Data Feed | Broker WebSocket API |
 | Processing | pandas, numpy |
-| Plotting | matplotlib |
-| Architecture | asyncio + threading |
+| Visualization | pyqtgraph |
+| Architecture | Event-driven (tick-based) |
 | Data Storage | In-memory / CSV (optional) |
 
 ---
@@ -198,7 +241,6 @@ This layer captures **volatility sentiment and order-flow bias**.
 ```text
 pandas
 numpy
-matplotlib
-asyncio
+pyqtgraph
 websockets
 datetime
