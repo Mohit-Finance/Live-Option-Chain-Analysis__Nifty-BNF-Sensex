@@ -1,203 +1,193 @@
-# 📈 Tick-by-Tick Option Chain Sentiment Analysis Engine  
-*(Python | Live Market Microstructure | Options Analytics)*
-
-A **real-time tick-by-tick option chain data analysis and visualization system** that captures **every market tick**, processes it into structured option metrics, and plots **live sentiment evolution** of the market using advanced option-chain–based indicators.
-
-This project transforms raw option chain ticks into **actionable market sentiment insights**, using **dynamic ATM/OTM logic**, **OI & LTP pressure**, **IV behavior**, and **straddle-based analytics**.
-
-> ⚠️ This project is for **market microstructure research & educational purposes only**.  
-> It does **not** provide trading advice or signals.
-
----
-
-## 🚀 Project Overview
-
-- Tick-by-tick option chain data is **captured and stored**
-- Each tick is **processed in real time**
-- Metrics are **plotted live** to visualize:
-  - Buying vs selling pressure
-  - CE vs PE dominance
-  - Volatility behavior
-  - OI build-up & unwinding
-  - Straddle decay / expansion
-- Supports **NIFTY, BANKNIFTY, and SENSEX** simultaneously
-
----
-
 ## 🖥 Live Visualization Layout
 
-### 🪟 Window 1 – Multi-Index Sentiment Dashboard
+The system is organized into **three dedicated visualization windows**, each serving a distinct analytical purpose — from macro sentiment to microstructure pressure and cross-index comparison.
 
-The main window consists of a **3 × 3 grid of subplots**:
+---
 
-| Column | Index |
-|------|------|
-| Column 1 | **NIFTY** |
-| Column 2 | **BANKNIFTY** |
-| Column 3 | **SENSEX** |
+## 🪟 Window 1 – Multi-Index Sentiment Dashboard (Macro View)
 
-Each column contains **3 vertically stacked subplots**, performing different layers of sentiment analysis.
+Window 1 provides a **high-level, option-chain–driven sentiment view** across all three indices simultaneously.
 
-> Below explanation focuses on **Column 1 (NIFTY)**.  
+### Layout
+- **3 × 3 grid of subplots**
+- Columns represent indices:
+  - Column 1 → **NIFTY**
+  - Column 2 → **BANKNIFTY**
+  - Column 3 → **SENSEX**
+- Each column contains **3 vertically stacked subplots**
+
+> The explanation below refers to **NIFTY (Column 1)**.  
 > The same logic applies identically to BANKNIFTY and SENSEX.
 
 ---
 
-## 📊 Subplot 1 (Row 1): OTM CE vs PE Pressure Analysis
+### 📊 Subplot 1 (Row 1): OTM CE vs PE Pressure Analysis
 
-### 🎯 What It Analyzes
-- **Change in LTP (CE vs PE)** for **OTM strikes**
-- **Change in OI (CE vs PE)** for **OTM strikes**
-- Detects which side (Call or Put) is **building pressure**
+**Purpose:**  
+Detects **directional pressure and sentiment imbalance** using OTM options.
 
-### 🔄 Dynamic OTM Selection
-- OTM strikes are **not fixed**
-- As the market moves:
-  - ATM shifts
-  - OTM strikes are **reselected dynamically**
-- Ensures relevance at all times
+**Analysis Performed**
+- Change in **LTP (CE vs PE)** for OTM strikes
+- Change in **OI (CE vs PE)** for OTM strikes
+- Pressure comparison between Call and Put sides
 
----
+**Dynamic Logic**
+- OTM strikes are selected dynamically
+- As ATM shifts with market movement, OTM strikes update automatically
 
-### 📌 Metrics Visualized
-- CE OTM LTP change
-- PE OTM LTP change
-- CE OTM OI change
-- PE OTM OI change
-
-These collectively indicate:
-- Aggressive buying
-- Writing pressure
-- Directional bias
-- Sentiment imbalance
-
----
-
-### 🧾 Textual Data Displayed
-- Current Time
-- Date
-- Index Name
-- Expiry Date
-- DTE (Days to Expiry)
+**Textual Context Displayed**
+- Time, Date, Index
+- Expiry, DTE
 - India VIX
-- IV Percentile (6M / 1Y / 2Y)
-- CE OI Buildup (reference: previous day close)
-- PE OI Buildup (reference: previous day close)
-- PCR (OI-based)
-- Today’s CE OI Change (reference: today’s open)
-- Today’s PE OI Change (reference: today’s open)
-- Intraday PCR (based on today’s OI change)
+- IV Percentiles (6M / 1Y / 2Y)
+- CE & PE OI build-up (vs previous day close)
+- OI-based PCR
+- Intraday CE & PE OI change (vs today’s open)
+- Intraday PCR
 
 ---
 
-## 📊 Subplot 2 (Row 2): Dynamic ATM Straddle Analysis
+### 📊 Subplot 2 (Row 2): Dynamic ATM Straddle Analysis
 
-### 🎯 What It Analyzes
-- **Live ATM straddle** (ATM updates dynamically)
-- Straddle price vs **Straddle VWAP**
-- OBV (On-Balance Volume) of:
-  - ATM CE
-  - ATM PE
+**Purpose:**  
+Tracks **volatility expansion / decay** and institutional activity at the ATM.
 
-This subplot helps identify:
-- Volatility expansion vs decay
-- Institutional activity
-- Directional conviction beneath straddle movement
+**Analysis Performed**
+- Live ATM straddle price
+- Straddle VWAP
+- OBV of ATM CE and ATM PE
 
----
-
-### 🧾 Textual Data Displayed
+**Textual Context Displayed**
 - Straddle price at market open (09:15)
 - Current straddle price
-- Net straddle decay / expansion
-- Current ATM CE OBV
-- Current ATM PE OBV
+- Net decay / expansion
+- ATM CE OBV
+- ATM PE OBV
 - Synthetic ATM strike
 
 ---
 
-## 📊 Subplot 3 (Row 3): IV, Delta & Buying Pressure Analysis
+### 📊 Subplot 3 (Row 3): IV, Delta & Buying Pressure
 
-### 🎯 What It Analyzes
-- Average **OTM IV behavior**
-- **Delta changes** (CE & PE)
-- **Buying pressure** derived from bid–ask quantity imbalance
+**Purpose:**  
+Measures **volatility behavior and order-flow pressure**.
 
----
+**Analysis Performed**
+- Average OTM IV (CE & PE)
+- Delta changes (CE & PE)
+- Buying pressure using bid–ask quantity imbalance
 
-### 🧾 Textual Data Displayed
-- Spot Price
+**Textual Context Displayed**
+- Spot price
 - Synthetic ATM
-- CE Avg OTM IV
-- PE Avg OTM IV
-- CE Buying Pressure
-- PE Buying Pressure
+- CE & PE average OTM IV
+- CE & PE buying pressure
 
 ---
 
-## 🪟 Window 2 – Tick-by-Tick Strike-Level Pressure Dashboard
+## 🪟 Window 2 – Tick-by-Tick Strike-Level Pressure Dashboard (Micro View)
 
-This window provides a **high-resolution, strike-specific view** of **immediate price and pressure behavior** using **LTP vs VWAP** comparisons.
+Window 2 is a **high-resolution, strike-specific microscope**, focused on **immediate price behavior vs VWAP**.
 
-- Layout: **3 × 3 grid**
-- Index selection:
-  - NIFTY
-  - BANKNIFTY
-  - SENSEX
-- When an index is selected (e.g., NIFTY), **the entire window focuses on that index only**
+### Layout
+- **3 × 3 grid**
+- One index selected at a time:
+  - NIFTY / BANKNIFTY / SENSEX
+- Entire window updates for the selected index only
 
 ---
 
 ### 🎯 Central Focus: ATM Straddle (2 × 2 Block)
 
-- The **center 2 × 2 area** plots:
+- Center **2 × 2 block** plots:
   - **ATM Straddle LTP vs VWAP**
-- Represents the **core volatility and sentiment zone**
-- ATM strike can be:
-  - Selected **automatically** (current ATM)
-  - Selected **manually** (user-defined strike)
+- Represents the **core sentiment and volatility zone**
+- ATM can be:
+  - Auto-selected (current ATM)
+  - Manually selected (user-defined)
 
 ---
 
-### 📉 Left Side: ATM Put & OTM Put Analysis
+### 📉 Put-Side Analysis (Left & Top)
 
-- Immediate **left of the 2 × 2 center**:
+- Immediate left of center:
   - ATM **PE LTP vs VWAP**
-- **Top row** plots:
-  - **OTM PE strikes above ATM**
-  - PE LTP vs VWAP
-- Total coverage:
-  - **ATM PE**
-  - **Up to 4 OTM PE strikes**
+- Top row:
+  - **OTM PE strikes below ATM**
+  - LTP vs VWAP
+- Coverage:
+  - ATM PE + **up to 4 OTM PE strikes**
 
-This reveals **downside pressure buildup** and defensive positioning.
+Captures **downside pressure buildup and defensive positioning**.
 
 ---
 
-### 📈 Right & Bottom Side: ATM Call & OTM Call Analysis
+### 📈 Call-Side Analysis (Right & Bottom)
 
-- Immediate **right of the 2 × 2 center**:
+- Immediate right of center:
   - ATM **CE LTP vs VWAP**
-- **Bottom row** plots:
+- Bottom row:
   - **OTM CE strikes above ATM**
-  - CE LTP vs VWAP
-- Total coverage:
-  - **ATM CE**
-  - **Up to 4 OTM CE strikes**
+  - LTP vs VWAP
+- Coverage:
+  - ATM CE + **up to 4 OTM CE strikes**
 
-This highlights **upside aggression and call-side dominance**.
+Captures **upside aggression and call dominance**.
 
 ---
 
 ### 🧠 What Window 2 Reveals
 
-- Instant **price vs VWAP divergence**
-- Tick-level **pressure buildup**
-- Early **sentiment shifts**
-- Real-time **volatility expansion or contraction**
-- CE vs PE dominance at and around ATM
+- Tick-level price vs VWAP divergence
+- Instant pressure buildup
+- Early sentiment shifts
+- Volatility expansion / contraction
+- CE vs PE dominance around ATM
 
-This window acts as a **microscope**, while Window 1 acts as a **macro sentiment scanner**.
+> Window 1 = **Macro sentiment scanner**  
+> Window 2 = **Microstructure microscope**
+
+---
+
+## 🪟 Window 3 – Cross-Index Option Chain & Market Context Dashboard
+
+Window 3 provides a **side-by-side comparative view** of **all three indices**, combined with **spot price and volatility context**.
+
+---
+
+### 📊 What Window 3 Displays
+
+#### 🔹 Option Chain Comparison (All Indices)
+- **NIFTY, BANKNIFTY, and SENSEX option chains** shown together
+- For both **CE and PE sides**, strike-wise:
+  - LTP
+  - Change in LTP
+  - Change in OI (reference: previous day close)
+
+This enables **intraday analysis** of:
+- Long build-up
+- Short build-up
+- Long unwinding
+- Short covering
+
+Across **all three indices simultaneously**.
+
+---
+
+#### 🔹 Spot & Volatility Context
+- **NIFTY candlestick chart**
+- **India VIX candlestick chart**
+- Provides macro confirmation to option-chain behavior
+
+---
+
+### 🧠 What Window 3 Reveals
+
+- Relative strength and weakness across indices
+- Index-wise divergence or convergence
+- Option-chain positioning vs actual price action
+- Volatility confirmation using India VIX
+- Broader market context for intraday decisions
 
 ---
 
@@ -207,40 +197,3 @@ This window acts as a **microscope**, while Window 1 acts as a **macro sentiment
 ![Live Option Chain Sentiment](./Images/all_screens.png)
 
 *(All plots update tick-by-tick in real time)*
-
----
-
-## 🧠 Core Concepts Used
-
-- Tick-by-tick data processing
-- Dynamic ATM & OTM selection
-- Synthetic ATM calculation
-- OI build-up vs unwinding logic
-- Straddle VWAP behavior
-- OBV-based option flow
-- Bid–ask imbalance analysis
-- Strike-level VWAP interaction
-
----
-
-## 🛠 Tech Stack
-
-| Layer | Technology |
-|-----|-----------|
-| Language | Python 3.10+ |
-| Data Feed | Broker WebSocket API |
-| Processing | pandas, numpy |
-| Visualization | pyqtgraph |
-| Architecture | Event-driven (tick-based) |
-| Data Storage | In-memory / CSV (optional) |
-
----
-
-## 📦 Python Libraries Used
-
-```text
-pandas
-numpy
-pyqtgraph
-websockets
-datetime
